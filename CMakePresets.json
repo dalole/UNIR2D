@@ -1,0 +1,14 @@
+{
+    "version": 8,
+    "configurePresets": [
+        {
+            "name": "dev",
+            "binaryDir": "${sourceDir}/build",
+            "installDir": "${sourceDir}/build/install/",
+            "cacheVariables": {
+                "CMAKE_CXX_EXTENSIONS": "OFF",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+            }
+        }
+    ]
+}
