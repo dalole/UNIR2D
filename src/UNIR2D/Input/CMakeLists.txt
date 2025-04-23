@@ -4,6 +4,8 @@ set(SRCROOT ${PROJECT_SOURCE_DIR}/src/UNIR2D/Input)
 set(SRC
     ${INCROOT}/Raton.hpp
     ${SRCROOT}/Raton.cpp
+    ${INCROOT}/Teclado.hpp
+    ${SRCROOT}/Teclado.cpp
 )
 source_group("" FILES ${SRC}) 
 
