@@ -18,6 +18,7 @@
 #include <SFML/Window/Keyboard.hpp>
 #include <SFML/Window/WindowHandle.hpp>
 
+#include <UNIR2D/Sistema/Rendidor.hpp>
 
 namespace unir2d {
 

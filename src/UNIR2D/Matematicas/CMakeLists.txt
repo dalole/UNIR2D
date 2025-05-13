@@ -6,3 +6,5 @@ set(SRC
     ${SRCROOT}/Transforma.cpp
 )
 source_group("" FILES ${SRC}) 
+
+unir2d_add_library(Matematicas SOURCES ${SRC})

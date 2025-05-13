@@ -15,7 +15,7 @@
 // Estado:  Terminado. Revisado. No documentado.
 
 #include <stdexcept>
-#include <bits/algorithmfwd.h>
+#include <algorithm>
 
 #include <UNIR2D/Sistema.hpp>
 using namespace unir2d;

@@ -71,7 +71,7 @@ namespace unir2d {
 
 		static Fuentes fuentes;
 
-		sf::Text m_texto;
+		sf::Text m_texto = sf::Text(fuentes.tabla_fuentes[0][0]);
 
         // los textos no se pueden copiar ni mover       
         Texto (const Texto & )              = delete;

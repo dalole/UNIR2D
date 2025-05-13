@@ -19,7 +19,7 @@ using namespace unir2d;
 
 
 void Teclado::configura (Rendidor * rendidor) {
-    winHandle = rendidor->window->getSystemHandle ();
+    winHandle = rendidor->window->getNativeHandle ();
 }
 
 bool Teclado::pulsando (sf::Keyboard::Key tecla) {

@@ -17,7 +17,7 @@
 using namespace unir2d;
 
 void Raton::configura (Rendidor * rendidor) {
-    winHandle = rendidor->window->getSystemHandle ();
+    winHandle = rendidor->window->getNativeHandle ();
     momento_clic = std::chrono::steady_clock::time_point::min ();
 }
 

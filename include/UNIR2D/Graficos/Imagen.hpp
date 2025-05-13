@@ -38,7 +38,7 @@ namespace unir2d {
     public: 
 
         /// @brief Constructor por defecto.
-        explicit Imagen () = default;
+        explicit Imagen ();
 
         /// @brief Destructor.
         ~Imagen ();
@@ -78,8 +78,8 @@ namespace unir2d {
 
     private: 
 
-        Textura * textura;
-        sf::Sprite sprite;
+        Textura * textura = nullptr;
+        sf::Sprite sprite = sf::Sprite(textura->entidad());
 
         int filas_estampas {1};
         int colns_estampas {1};    

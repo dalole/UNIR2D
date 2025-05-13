@@ -18,6 +18,11 @@
 #include <UNIR2D/Graficos.hpp>
 using namespace unir2d;
 
+Imagen::Imagen()
+{
+    textura = nullptr;
+    sprite = sf::Sprite(textura->entidad());
+}
 
 Imagen::~Imagen () {
     if (textura != nullptr) {

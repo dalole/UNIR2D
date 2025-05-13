@@ -16,7 +16,7 @@
 
 
 #include <math.h>
-#include <bits/algorithmfwd.h>
+#include <algorithm>
 
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/Vertex.hpp>
