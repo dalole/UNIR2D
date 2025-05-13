@@ -23,7 +23,7 @@
 
 namespace unir2d {
 
-
+    class Dibujable;
     class Rendidor;
 
 
@@ -121,7 +121,7 @@ namespace unir2d {
     private: 
 
         Transforma m_transforma {};
-        std::vector <Dibujable *> m_dibujos {};   
+        std::vector <Dibujable*> m_dibujos {};   
         int presentados {};
         bool diana {false};
 
@@ -167,7 +167,7 @@ namespace unir2d {
         m_transforma.ponRotacion (grados);
     }
 
-    inline const std::vector<Dibujable *> & ActorBase::dibujos () const {
+    inline const std::vector<Dibujable*> & ActorBase::dibujos () const {
         return m_dibujos;
     }
 

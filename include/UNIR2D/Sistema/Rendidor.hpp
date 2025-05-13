@@ -18,6 +18,7 @@
 #pragma once
 
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <UNIR2D/Sistema/JuegoBase.hpp>
 
 namespace unir2d {
  

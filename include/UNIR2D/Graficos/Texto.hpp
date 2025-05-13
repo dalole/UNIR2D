@@ -16,15 +16,12 @@
   
 
 #pragma once
-#include <string>
-
 #include <SFML/Graphics/Text.hpp>
 
 #include <UNIR2D/Graficos/Dibujable.hpp>
 #include <UNIR2D/Graficos/Color.hpp>
 #include <UNIR2D/Graficos/Fuentes.hpp>
 #include <UNIR2D/Graficos/Textura.hpp>
-
 
 namespace unir2d {
 
@@ -74,7 +71,7 @@ namespace unir2d {
 
 		static Fuentes fuentes;
 
-		sf::Text m_texto {};
+		sf::Text m_texto;
 
         // los textos no se pueden copiar ni mover       
         Texto (const Texto & )              = delete;

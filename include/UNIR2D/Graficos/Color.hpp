@@ -149,10 +149,10 @@ namespace unir2d {
 
     private:
 
-        uint8_t m_rojo;
-        uint8_t m_verde;
-        uint8_t m_azul;
-        uint8_t m_alfa;
+        uint8_t m_rojo = 0;
+        uint8_t m_verde = 0;
+        uint8_t m_azul = 0;
+        uint8_t m_alfa = 255;
     
         friend constexpr bool operator == (const Color & color_1, const Color & color_2);
         friend constexpr bool operator != (const Color & color_1, const Color & color_2);

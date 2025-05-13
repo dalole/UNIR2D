@@ -81,8 +81,8 @@ namespace unir2d {
       
     private:
 
-        float comp_x;
-        float comp_y;
+        float comp_x = 0;
+        float comp_y = 0;
 
         friend constexpr bool   operator == (const Vector & vector_1, const Vector & vector_2);
         friend constexpr bool   operator != (const Vector & vector_1, const Vector & vector_2);

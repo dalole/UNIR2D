@@ -24,7 +24,8 @@
 namespace unir2d {
 
 
-	using std::string;
+	using string = std::string;
+	using wstring = std::wstring;
 
 
 	/// @cond

@@ -22,6 +22,9 @@
 
 namespace unir2d {
 
+    class Rendidor;
+    class ActorBase;
+
     /// @enum EjecucionJuego
     /// @brief Enumera los posibles estados de ejecución de un juego.
     /// @details La clase JuegoBase mantiene el estado de ejecución del juego.
@@ -145,7 +148,7 @@ namespace unir2d {
 
     private:
 
-        std::vector<ActorBase *> m_actores {};  
+        std::vector<ActorBase*> m_actores {};  
         int indice_z_minimo {};
 
         EjecucionJuego m_ejecucion {EjecucionJuego::activo};
@@ -189,7 +192,7 @@ namespace unir2d {
     inline void JuegoBase::posactualiza (double tiempo_seg) {
     }
 
-    inline const std::vector<ActorBase *> & JuegoBase::actores () const {
+    inline const std::vector<ActorBase*> & JuegoBase::actores () const {
         return m_actores;
     }
 

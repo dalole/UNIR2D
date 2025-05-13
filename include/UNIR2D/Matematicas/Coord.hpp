@@ -76,8 +76,8 @@ namespace unir2d {
       
     private:
 
-        int m_fila;
-        int m_coln;
+        int m_fila = 0;
+        int m_coln = 0;
 
         friend constexpr bool  operator == (const Coord & valor_1, const Coord & valor_2);
         friend constexpr bool  operator != (const Coord & valor_1, const Coord & valor_2);

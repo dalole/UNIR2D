@@ -21,6 +21,7 @@
 
 #include <UNIR2D/Matematicas/Vector.hpp>
 #include <UNIR2D/Matematicas/Transforma.hpp>
+#include <UNIR2D/Sistema/Rendidor.hpp>
 
 namespace unir2d {
 
