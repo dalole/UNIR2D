@@ -16,8 +16,6 @@
 
 
 #include <UNIR2D/Graficos.hpp>
-
-using std::filesystem::path;
 using namespace unir2d;
 
 
@@ -76,7 +74,7 @@ void Textura::dibuja (Texto * texto) {
 
 const sf::Texture & Textura::entidad () {
     if (para_rendir) {
-        if (! rendida) {
+        if (!rendida) {
             rendible.display ();
             rendida = true;
         }

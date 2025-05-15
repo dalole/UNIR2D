@@ -18,12 +18,6 @@
 #include <UNIR2D/Graficos.hpp>
 using namespace unir2d;
 
-Imagen::Imagen()
-{
-    textura = nullptr;
-    sprite = sf::Sprite(textura->entidad());
-}
-
 Imagen::~Imagen () {
     if (textura != nullptr) {
         textura->cuenta_usos --;
@@ -33,7 +27,7 @@ Imagen::~Imagen () {
 
 void Imagen::asigna (Textura * textura) {
     this->textura = textura;
-    sprite.setTexture (textura->entidad ());
+    sprite.emplace(textura->entidad());
     textura->cuenta_usos ++;
 }
 
@@ -65,18 +59,18 @@ void Imagen::dibuja (const Transforma & contenedor, Rendidor * rendidor) {
         int alto  = this->textura->rectg_textura.y / filas_estampas; 
         int x = ancho * (this->coln_seleccion - 1);
         int y = alto  * (this->fila_seleccion - 1);
-        this->sprite.setTextureRect (sf::IntRect(sf::Rect{sf::Vector2{x, y}, sf::Vector2{ancho, alto}}));    
+        this->sprite.value().setTextureRect (sf::IntRect(sf::Rect{sf::Vector2{x, y}, sf::Vector2{ancho, alto}}));    
     }
-    Dibujable::situa (this->sprite, contenedor, this->m_transforma);
+    Dibujable::situa (this->sprite.value(), contenedor, this->m_transforma);
     if (this->coloreado) {
-        this->sprite.setColor (sf::Color (
+        this->sprite.value().setColor (sf::Color (
                 this->color.rojo (),
                 this->color.verde (),
                 this->color.azul (),
                 this->color.alfa ()  ));
     }
     //
-    rendidor->window->draw (this->sprite);
+    rendidor->window->draw (this->sprite.value());
 }
 
 
@@ -86,18 +80,18 @@ void Imagen::dibuja (Textura * textura) {
         int alto  = textura->rectg_textura.y / this->filas_estampas; 
         int x = ancho * (coln_seleccion - 1);
         int y = alto  * (fila_seleccion - 1);
-        this->sprite.setTextureRect (sf::IntRect(sf::Rect{sf::Vector2{x, y}, sf::Vector2{ancho, alto}}));    
+        this->sprite.value().setTextureRect (sf::IntRect(sf::Rect{sf::Vector2{x, y}, sf::Vector2{ancho, alto}}));    
     }
-    sprite.setPosition (sf::Vector2f{this->m_transforma.posicion ().x(), this->m_transforma.posicion ().y()});
+    sprite.value().setPosition (sf::Vector2f{this->m_transforma.posicion ().x(), this->m_transforma.posicion ().y()});
     if (this->coloreado) {
-        this->sprite.setColor (sf::Color (
+        this->sprite.value().setColor (sf::Color (
                 this->color.rojo (),
                 this->color.verde (),
                 this->color.azul (),
                 this->color.alfa ()  ));
     }
     //
-    textura->rendible.draw (this->sprite);
+    textura->rendible.draw (this->sprite.value());
 }
 
 

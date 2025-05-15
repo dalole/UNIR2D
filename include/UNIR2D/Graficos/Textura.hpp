@@ -42,8 +42,7 @@ namespace unir2d {
     /// Esta clase se puede usar para cargar las imágenes de un archivo o para crear una imagen 
     /// nueva en la memoria.
     class Textura {
-    public: 
-
+    public:         
         /// @brief Constructor.
         explicit Textura ();
 
@@ -86,7 +85,6 @@ namespace unir2d {
         /// @details Si hay alguna asignación activa, esta instancia no se puede eliminar.
         /// @return Número de asignación activa a esta instancia.
         int cuentaUsos () const;
-
     private: 
 
         bool iniciada {false};

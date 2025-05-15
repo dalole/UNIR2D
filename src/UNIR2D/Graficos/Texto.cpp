@@ -20,11 +20,10 @@ using namespace unir2d;
 
 
 Texto::Texto (const string & fuente) {
-    if (! fuentes.tabla_fuentes.count(fuente)) {
-        fuentes.carga (fuente);
-    }
+    if (! fuentes.tabla_fuentes.count(fuente)) fuentes.carga (fuente);
     sf::Font * font = fuentes.tabla_fuentes.at (fuente);
-    m_texto.setFont (* font);
+
+    m_texto.emplace(*font);
     fuentes.cuenta_usos ++;
 }
 
@@ -38,13 +37,13 @@ Texto::~Texto () {
 
 
 float Texto::anchura () {
-    return this->m_texto.getGlobalBounds().size.x;
+    return this->m_texto.value().getGlobalBounds().size.x;
 }
 
 
 void Texto::dibuja (const Transforma & contenedor, Rendidor * rendidor) {
-    Dibujable::situa (this->m_texto, contenedor, this->m_transforma);
-    rendidor->window->draw (this->m_texto);
+    Dibujable::situa (this->m_texto.value(), contenedor, this->m_transforma);
+    rendidor->window->draw (this->m_texto.value());
 
     //sf::Transformable objeto {};
     //Dibujable::situa (objeto, contenedor, this->m_transforma);
@@ -55,8 +54,8 @@ void Texto::dibuja (const Transforma & contenedor, Rendidor * rendidor) {
 
 
 void Texto::dibuja (Textura * textura) {
-    this->m_texto.setPosition (sf::Vector2f{m_transforma.posicion().x (), m_transforma.posicion().y()});
-    textura->rendible.draw (this->m_texto);
+    this->m_texto.value().setPosition (sf::Vector2f{m_transforma.posicion().x (), m_transforma.posicion().y()});
+    textura->rendible.draw (this->m_texto.value());
 
     //sf::Transformable objeto {};
     //Dibujable::situa (objeto, contenedor, this->m_transforma);

@@ -70,8 +70,7 @@ namespace unir2d {
 	private:
 
 		static Fuentes fuentes;
-
-		sf::Text m_texto = sf::Text(fuentes.tabla_fuentes[0][0]);
+		std::optional<sf::Text> m_texto;
 
         // los textos no se pueden copiar ni mover       
         Texto (const Texto & )              = delete;
@@ -90,11 +89,11 @@ namespace unir2d {
 	inline Fuentes Texto::fuentes {};
 
 	inline void Texto::ponCadena (const string & valor) {
-		m_texto.setString (valor);
+		m_texto.value().setString(valor);
 	}
 
 	inline void Texto::ponCadena (const std::wstring & valor) {
-		m_texto.setString (valor);
+		m_texto.value().setString(valor);
 	}
 
 	//inline void Texto::ponCaracterX (unsigned int valor) {
@@ -102,11 +101,11 @@ namespace unir2d {
 	//}
 
 	inline void Texto::ponTamano (int valor) {
-		m_texto.setCharacterSize (valor);
+		m_texto.value().setCharacterSize (valor);
 	}
 
 	inline void Texto::ponColor (Color valor) {
-		m_texto.setFillColor (sf::Color {valor.entero ()});
+		m_texto.value().setFillColor (sf::Color {valor.entero ()});
 	}
 
 
