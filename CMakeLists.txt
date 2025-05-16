@@ -6,13 +6,15 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
 add_subdirectory(src/UNIR2D)
 
 file(GLOB UNIR2D_HEADERS RELATIVE ${PROJECT_SOURCE_DIR} "include/UNIR2D/*")
+add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/dummy.cpp
+                   COMMAND touch ${CMAKE_CURRENT_BINARY_DIR}/dummy.cpp 
+                   VERBATIM)
+
 set(UNIR2D_SOURCES ${UNIR2D_HEADERS})
+list(APPEND UNIR2D_SOURCES ${CMAKE_CURRENT_BINARY_DIR}/dummy.cpp)
 
 add_library(UNIR2D ${UNIR2D_SOURCES})
 target_compile_features(UNIR2D PUBLIC cxx_std_17)
-
-set(CMAKE_C++_CREATE_STATIC_LIBRARY ON)
-set_target_properties(UNIR2D PROPERTIES LINKER_LANGUAGE C++)
 
 set(CPACK_PACKAGE_NAME_SUMMARY "UNIR2D")
 set(CPACK_PACKAGE_VENDOR "International University of La Rioja")
