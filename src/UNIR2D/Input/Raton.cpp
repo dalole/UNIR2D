@@ -41,5 +41,5 @@ bool Raton::dobleClic () {
 }
 
 Vector Raton::posicion () {
-    return Vector {sf::Mouse::getPosition().x, sf::Mouse::getPosition().y};
+    return Vector {(float)sf::Mouse::getPosition().x, (float)sf::Mouse::getPosition().y};
 }

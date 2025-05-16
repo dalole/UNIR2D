@@ -16,7 +16,7 @@
 
 #include <UNIR2D/Graficos.hpp>
 
-#include <bits/stdc++.h>
+#include <algorithm>
 using namespace unir2d;
 
 

@@ -17,7 +17,7 @@
 
 #pragma once
 #include <chrono>
-#include <bits/this_thread_sleep.h>
+#include <thread>
 
 
 namespace unir2d {
