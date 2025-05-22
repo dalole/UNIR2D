@@ -58,37 +58,55 @@ void Baldosas::mapea (const std::vector <uint32_t> & tabla_indices) {
     int ancho_estmp = textura->rectg_textura.x / this->colns_estampas;
     int alto__estmp = textura->rectg_textura.y / this->filas_estampas; 
     //
-    this->vertices.setPrimitiveType (sf::PrimitiveType::TriangleStrip);
-    this->vertices.resize (filas_baldosas * colns_baldosas * 4);
-    //
-    for (int i = 0; i < this->filas_baldosas; ++ i) {
-        for (int j = 0; j < this->colns_baldosas; ++ j) {
-            //
+    this->vertices.setPrimitiveType(sf::PrimitiveType::Triangles);
+    this->vertices.resize(filas_baldosas * colns_baldosas * 6);
+
+    for (int i = 0; i < this->filas_baldosas; ++i) {
+        for (int j = 0; j < this->colns_baldosas; ++j) {
             int index_balds = i * colns_baldosas + j;
-            int index_estmp = tabla_indices [index_balds];
-            int coln__estmp = index_estmp % colns_estampas;  // faltaría sumar 1
-            int fila__estmp = index_estmp / colns_estampas;  // faltaría sumar 1
-            //
-            int index_vertc = index_balds * 4;
-            float izqrd, derch, arrba, abajo; 
-            //
-            izqrd = (float) ( j      * ancho_estmp);
-            derch = (float) ((j + 1) * ancho_estmp); 
-            arrba = (float) ( i      * alto__estmp);
-            abajo = (float) ((i + 1) * alto__estmp); 
-            this->vertices [index_vertc    ].position = sf::Vector2f (izqrd, arrba);  
-            this->vertices [index_vertc + 1].position = sf::Vector2f (derch, arrba); 
-            this->vertices [index_vertc + 2].position = sf::Vector2f (derch, abajo); 
-            this->vertices [index_vertc + 3].position = sf::Vector2f (izqrd, abajo); 
-            //
-            izqrd = (float) ( coln__estmp      * ancho_estmp);
-            derch = (float) ((coln__estmp + 1) * ancho_estmp); 
-            arrba = (float) ( fila__estmp      * alto__estmp);
-            abajo = (float) ((fila__estmp + 1) * alto__estmp); 
-            this->vertices [index_vertc    ].texCoords = sf::Vector2f (izqrd, arrba);
-            this->vertices [index_vertc + 1].texCoords = sf::Vector2f (derch, arrba);
-            this->vertices [index_vertc + 2].texCoords = sf::Vector2f (derch, abajo);
-            this->vertices [index_vertc + 3].texCoords = sf::Vector2f (izqrd, abajo);
+            int index_estmp = tabla_indices[index_balds];
+            int coln__estmp = index_estmp % colns_estampas;
+            int fila__estmp = index_estmp / colns_estampas;
+
+            // Posiciones de los 4 vértices del quad
+            float izqrd = (float)(j * ancho_estmp);
+            float derch = (float)((j + 1) * ancho_estmp);
+            float arrba = (float)(i * alto__estmp);
+            float abajo = (float)((i + 1) * alto__estmp);
+
+            sf::Vector2f v0(izqrd, arrba);   // superior izquierda
+            sf::Vector2f v1(derch, arrba);   // superior derecha
+            sf::Vector2f v2(derch, abajo);   // inferior derecha
+            sf::Vector2f v3(izqrd, abajo);   // inferior izquierda
+
+            // Coordenadas de textura
+            float t_izqrd = (float)(coln__estmp * ancho_estmp);
+            float t_derch = (float)((coln__estmp + 1) * ancho_estmp);
+            float t_arrba = (float)(fila__estmp * alto__estmp);
+            float t_abajo = (float)((fila__estmp + 1) * alto__estmp);
+
+            sf::Vector2f t0(t_izqrd, t_arrba);
+            sf::Vector2f t1(t_derch, t_arrba);
+            sf::Vector2f t2(t_derch, t_abajo);
+            sf::Vector2f t3(t_izqrd, t_abajo);
+
+            int index_vertc = index_balds * 6;
+
+            // Primer triángulo: v0, v1, v2
+            this->vertices[index_vertc + 0].position = v0;
+            this->vertices[index_vertc + 1].position = v1;
+            this->vertices[index_vertc + 2].position = v2;
+            this->vertices[index_vertc + 0].texCoords = t0;
+            this->vertices[index_vertc + 1].texCoords = t1;
+            this->vertices[index_vertc + 2].texCoords = t2;
+
+            // Segundo triángulo: v0, v2, v3
+            this->vertices[index_vertc + 3].position = v0;
+            this->vertices[index_vertc + 4].position = v2;
+            this->vertices[index_vertc + 5].position = v3;
+            this->vertices[index_vertc + 3].texCoords = t0;
+            this->vertices[index_vertc + 4].texCoords = t2;
+            this->vertices[index_vertc + 5].texCoords = t3;
         }
     }
     //

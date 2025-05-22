@@ -16,28 +16,41 @@
 #include <UNIR2D/Input.hpp>
 using namespace unir2d;
 
-void Raton::configura (Rendidor * rendidor) {
-    winHandle = rendidor->window->getNativeHandle ();
-    momento_clic = std::chrono::steady_clock::time_point::min ();
-}
+
+constexpr std::chrono::nanoseconds ms__50 { 50 * 1000 * 1000};  // 50 millisegundos
+constexpr std::chrono::nanoseconds ms_200 {200 * 1000 * 1000}; // 200 millisegundos
+
+int pulsacionBoton = 0;
+bool botonPulsado {false};
 
 bool Raton::pulsando(sf::Mouse::Button boton)
 {
-    return sf::Mouse::isButtonPressed(boton);
+    bool pulsando = sf::Mouse::isButtonPressed(boton);
+
+    if(pulsando) if(!botonPulsado) botonPulsado = true;
+    else botonPulsado = false;
+
+    return botonPulsado;
 }
 
 bool Raton::dobleClic () {
-    if(!sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) return false;
+    bool botonPulsando = sf::Mouse::isButtonPressed(sf::Mouse::Button::Left);
+    if(pulsacionBoton > 2) pulsacionBoton = 0;
 
-    Momento ahora = std::chrono::steady_clock::now ();
-    std::chrono::nanoseconds lapso = ahora - momento_clic;        
-    momento_clic = ahora;
+    if(botonPulsando) {
+        if(!botonPulsado) {
+            Momento ahora = std::chrono::steady_clock::now ();
+            std::chrono::nanoseconds lapso = ahora - momento_clic;
 
-    constexpr std::chrono::nanoseconds ms__50 { 50 * 1000 * 1000};  // 50 millisegundos
-    constexpr std::chrono::nanoseconds ms_200 {200 * 1000 * 1000}; // 200 millisegundos
+            momento_clic = ahora;
+            if(lapso > ms__50 && lapso < ms_200) pulsacionBoton++;
+            botonPulsado = true;
+        }
+    }
+    else botonPulsado = false;
 
-    if (lapso > ms_200 || lapso < ms__50) return false;
-    return true;
+    if(pulsacionBoton == 2 && botonPulsado) return true;
+    return false;
 }
 
 Vector Raton::posicion () {

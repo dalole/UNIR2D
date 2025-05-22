@@ -17,11 +17,6 @@
 #include <UNIR2D/Input.hpp>
 using namespace unir2d;
 
-
-void Teclado::configura (Rendidor * rendidor) {
-    winHandle = rendidor->window->getNativeHandle ();
-}
-
 bool Teclado::pulsando (sf::Keyboard::Key tecla) {
     return sf::Keyboard::isKeyPressed(tecla);
 }

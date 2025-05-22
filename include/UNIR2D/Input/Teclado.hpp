@@ -45,9 +45,6 @@ namespace unir2d {
 		static bool pulsando (sf::Keyboard::Key tecla);
 
     private:
-
-		inline static sf::WindowHandle winHandle;
-        static void configura (Rendidor * rendidor);
         friend class Motor;
     };
 }

@@ -48,11 +48,8 @@ namespace unir2d {
             static Vector posicion ();
         private:
             using Momento = std::chrono::time_point<std::chrono::steady_clock>;
-    
-            inline static sf::WindowHandle winHandle;
             inline static Momento momento_clic;
 
-            static void configura (Rendidor * rendidor);
             friend class Motor;
     };
 }
