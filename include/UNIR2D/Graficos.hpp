@@ -11,3 +11,4 @@
 #include "Graficos/Texto.hpp"
 #include "Graficos/Textura.hpp"
 #include "Graficos/Trazos.hpp"
+#include "Graficos/Efecto.hpp"
