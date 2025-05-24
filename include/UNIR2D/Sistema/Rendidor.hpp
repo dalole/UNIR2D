@@ -48,6 +48,7 @@ namespace unir2d {
         friend class Raton;
         friend class Motor;
         friend class ActorBase;
+        friend class Efecto;
         friend class Textura;
         friend class Circulo;
         friend class Trazos;
