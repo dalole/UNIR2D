@@ -1,16 +1,15 @@
 #include <UNIR2D/Graficos.hpp>
 using namespace unir2d;
 
-explicit Efecto::Efecto(sf::Texture&& texture, sf::Shader&& shader) : m_texture(std::move(texture)), m_shader(std::move(shader))
-{
-    m_shader.setUniform("texture", sf::Shader::CurrentTexture);
+void Efecto::carga(std::filesystem::path archivo, sf::Shader::Type tipo) {
+    bool bien = m_shader.loadFromFile(archivo, tipo);
+    if(!bien) throw std::runtime_error {"archivo de carga de Efecto no encontrado: " + archivo.string ()};
 }
 
-bool Efecto::carga(std::filesystem::path ruta, sf::Shader::Type tipo) {
-    if(m_shader.loadFromFile(ruta, tipo)) return true;
-    return false;
+void Efecto::asigna(Textura * textura) {
+    m_shader.setUniform("texture", textura);
 }
-
+ 
 void Efecto::actualiza(double time) {
 }
 

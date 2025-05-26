@@ -1,4 +1,3 @@
-
 // UNIR-2D :: Motor de juego mínimo para la programación de microjuegos en 2 dimensiones.
 // 
 // Copyright (C) 2022 UNIR-Universidad Internacional de La Rioja. 
@@ -24,13 +23,18 @@
 namespace unir2d {
     class Efecto : public Dibujable {
         public:
-            explicit Efecto(sf::Texture&& texture, sf::Shader&& shader);
+            explicit Efecto();
+            ~Efecto ();
 
-            virtual bool carga(std::filesystem::path ruta, sf::Shader::Type tipo);
-            virtual void actualiza(double time);
-        private:
+            void carga(std::filesystem::path ruta, sf::Shader::Type tipo);
+
+            void asigna(Textura * textura);
+            void actualiza(double time);
+        protected:
             sf::Shader m_shader {};
             sf::Texture m_texture {};
+        private:
+            inline static int cuenta_instancias {};
 
             // los efectos no se pueden copiar ni mover       
             Efecto (const Efecto & )              = delete;
@@ -39,5 +43,14 @@ namespace unir2d {
             Efecto & operator = (Efecto && )      = delete;
 
             void dibuja(const Transforma & contenedor, Rendidor * rendidor);
+            friend class Texture;
     };
+
+    inline Efecto::Efecto () {
+        cuenta_instancias ++;
+    }
+
+    inline Efecto::~Efecto () {
+        cuenta_instancias --;
+    }
 }

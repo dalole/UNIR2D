@@ -24,6 +24,8 @@ set(SRC
     ${SRCROOT}/Textura.cpp
     ${INCROOT}/Trazos.hpp
     ${SRCROOT}/Trazos.cpp
+    ${INCROOT}/Efecto.hpp
+    ${SRCROOT}/Efecto.cpp
 )
 source_group("" FILES ${SRC}) 
 
