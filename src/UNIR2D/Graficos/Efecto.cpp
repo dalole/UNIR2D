@@ -1,4 +1,5 @@
 #include <UNIR2D/Graficos.hpp>
+#include <iostream>
 using namespace unir2d;
 
 void Efecto::carga(std::filesystem::path archivo, sf::Shader::Type tipo) {
@@ -7,7 +8,15 @@ void Efecto::carga(std::filesystem::path archivo, sf::Shader::Type tipo) {
 }
 
 void Efecto::asigna(Textura * textura) {
-    m_shader.setUniform("texture", textura);
+    m_texture = textura->entidad();
+}
+
+void Efecto::define(string nombre, float valor) {
+    m_shader.setUniform(nombre, valor);
+}
+
+void Efecto::define(string nombre, Vector valor) {
+    m_shader.setUniform(nombre, sf::Vector2f{valor.x(), valor.y()});
 }
  
 void Efecto::actualiza(double time) {
@@ -15,10 +24,6 @@ void Efecto::actualiza(double time) {
 
 void Efecto::dibuja(const Transforma & contenedor, Rendidor * rendidor) {
     sf::Sprite sprite = sf::Sprite{m_texture};
-    sf::RenderStates states {};
-
     Dibujable::situa(sprite, contenedor, this->m_transforma);
-    states.shader = &m_shader;
-
-    rendidor->window->draw(sprite, states);
+    rendidor->window->draw(sprite, &m_shader);
 }

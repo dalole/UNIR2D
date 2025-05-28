@@ -27,8 +27,11 @@ namespace unir2d {
             ~Efecto ();
 
             void carga(std::filesystem::path ruta, sf::Shader::Type tipo);
+            void asigna(Textura * valor);
 
-            void asigna(Textura * textura);
+            void define(string nombre, float valor);
+            void define(string nombre, Vector valor);
+
             void actualiza(double time);
         protected:
             sf::Shader m_shader {};
@@ -43,7 +46,6 @@ namespace unir2d {
             Efecto & operator = (Efecto && )      = delete;
 
             void dibuja(const Transforma & contenedor, Rendidor * rendidor);
-            friend class Texture;
     };
 
     inline Efecto::Efecto () {

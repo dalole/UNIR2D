@@ -85,6 +85,7 @@ namespace unir2d {
         /// @details Si hay alguna asignación activa, esta instancia no se puede eliminar.
         /// @return Número de asignación activa a esta instancia.
         int cuentaUsos () const;
+        const sf::Texture & entidad ();
     private: 
 
         bool iniciada {false};
@@ -97,8 +98,6 @@ namespace unir2d {
         sf::RenderTexture rendible {};
 
         int cuenta_usos {0};
-
-        const sf::Texture & entidad ();
 
         inline static int cuenta_instancias {};
 

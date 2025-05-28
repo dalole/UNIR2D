@@ -25,12 +25,8 @@ bool botonPulsado {false};
 
 bool Raton::pulsando(sf::Mouse::Button boton)
 {
-    bool pulsando = sf::Mouse::isButtonPressed(boton);
-
-    if(pulsando) if(!botonPulsado) botonPulsado = true;
-    else botonPulsado = false;
-
-    return botonPulsado;
+    if(pulsacionBoton == 1 && botonPulsado) return true;
+    return false;
 }
 
 bool Raton::dobleClic () {
@@ -39,11 +35,7 @@ bool Raton::dobleClic () {
 
     if(botonPulsando) {
         if(!botonPulsado) {
-            Momento ahora = std::chrono::steady_clock::now ();
-            std::chrono::nanoseconds lapso = ahora - momento_clic;
-
-            momento_clic = ahora;
-            if(lapso > ms__50 && lapso < ms_200) pulsacionBoton++;
+            pulsacionBoton++;
             botonPulsado = true;
         }
     }
